@@ -1,0 +1,30 @@
+﻿doctype html
+html(lang="en", ng-app="App")
+	head
+		meta(charset="utf-8")
+		link(rel="stylesheet", type="text/css", href="http://fonts.googleapis.com/css?family=Open+Sans")
+		link(rel="stylesheet", href="css/vendor/foundation.css")
+		link(rel="stylesheet", href="css/base.css")
+	body
+		div(ng-controller="BaseCtrl" class="panel")
+			div(ng-controller="SentimentsCtrl")
+				div(class="row top-20 width-98p")
+					div(class="medium-5 columns")
+						div(class="panel")
+							pie(data="data")
+					div(class="medium-7 columns")
+						div(class="panel")
+							table(class="table table-condensed")
+								tr(ng-repeat="tweet in tweets", ng-class="{'tweet-positive': tweet.sentiment.score > 0, 'tweet-negative': tweet.sentiment.score < 0}")
+									td(ng-click="onTweetClick(tweet.id)") {{tweet.text}}
+				div(id="tweetModal", class="reveal-modal", data-reveal)
+					h2 {{currentTweetId}}
+					p {{currentTweetData}}
+		script(type="application/javascript", src="js/vendor/angular.js")
+		script(type="application/javascript", src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js")
+		script(type="application/javascript", src="js/vendor/d3.js")
+		script(type="application/javascript", src="js/vendor/jquery-1.11.1.js")
+		script(type="application/javascript", src="js/vendor/foundation.js")
+		script(type="application/javascript", src="js/vendor/foundation.reveal.js")
+		script(type="application/javascript", src="js/directives.js")
+		script(type="application/javascript", src="js/app.js")
